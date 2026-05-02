@@ -1,0 +1,24 @@
+{
+  "agent_name": "TORQai-Gateway",
+  "version": "1.0.0",
+  "model": "claude-3-5-sonnet-20241022",
+  "loop_interval_ms": 30000,
+  "database": {
+    "type": "supabase",
+    "url": "process.env.SUPABASE_URL",
+    "key": "process.env.SUPABASE_SERVICE_ROLE_KEY"
+  },
+  "skills": [
+    "./skills/car-search",
+    "./skills/messaging"
+  ],
+  "security": {
+    "allow_code_execution": false,
+    "require_human_approval": true,
+    "allowed_endpoints": [
+      "https://carapi.dev/api/v1/vehicles",
+      "http://localhost:3000/api/webhooks/twilio",
+      "http://localhost:3000/api/webhooks/resend"
+    ]
+  }
+}
